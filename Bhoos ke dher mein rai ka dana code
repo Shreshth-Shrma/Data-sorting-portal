@@ -1,0 +1,24 @@
+//a= given array 
+//low = lower index or left side index
+//high =higher index or right side index
+//ele=element to be searched
+int binarySearch(int a[], int low, int high, int ele)
+{
+	if (high >= low) {
+		int mid = low + (high - l) / 2;
+
+		// If middle element is the answer  
+		if (a[mid] == ele)
+			return mid;
+
+		// this make a search space reduce only to left half
+		if (a[mid] > ele)
+			return binarySearch(a, low, mid - 1, ele);
+
+		// this make a search space reduce only to right half
+		return binarySearch(a, mid + 1, high, ele);
+	}
+
+	return -1;
+}
+// since binary search have time complexity O(log n),so this might be useful in large sized array.
