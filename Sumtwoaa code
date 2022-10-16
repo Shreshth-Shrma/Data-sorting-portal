@@ -1,0 +1,46 @@
+//since array is very large so string can be used to add two numbers.
+// C++ program to find sum of two large numbers.
+
+string findSum(string str1, string str2)
+{
+	//str2 should be greater than str1 in length as we are adding str1 into str2
+	if (str1.length() > str2.length())
+		swap(str1, str2);
+  string ans = "";
+
+	// length of strings
+	int n1 = str1.length(), n2 = str2.length();
+
+	// Reversing strings as we start add from the LSB 
+	reverse(str1.begin(), str1.end());
+	reverse(str2.begin(), str2.end());
+
+	int carry = 0;
+	for (int i=0; i<n1; i++)
+	{
+		// caculate sum of current digits and carry
+		int sum = ((str1[i]-'0')+(str2[i]-'0')+carry);
+		ans.push_back(sum%10 + '0');
+
+		
+		carry = sum/10;
+	}
+
+	// Add remaining digits of larger number to ans
+	for (int i=n1; i<n2; i++)
+	{
+		int sum = ((str2[i]-'0')+carry);
+		ans.push_back(sum%10 + '0');
+		carry = sum/10;
+	}
+
+	// if carry exist then add
+	if (carry)
+		ans.push_back(carry+'0');
+
+	// reverse ans string 
+	reverse(ans.begin(), ans.end());
+
+	return ans;
+}
+
